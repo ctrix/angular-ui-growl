@@ -3,8 +3,6 @@ Angular-UI-Growl
 
 **Growl style notifications in AngularJS**
 
-[![Build Status](https://travis-ci.org/ctrix/angular-ui-growl.png)](https://travis-ci.org/ctrix/angular-ui-growl)
-
 Demo
 ====
 
