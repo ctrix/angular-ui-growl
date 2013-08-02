@@ -1,47 +1,42 @@
 'use strict';
 
-angular.module('ui.growl', [
-    'template/growl/box.html'
-])
+angular.module('ui.growl', ['template/growl/box.html'])
 
-.controller('GrowlController',
-    ['$scope', '$timeout', 'growl', 'model',
-    function($scope, $timeout, growl, model) {
-        var currentTimeout;
+.controller('GrowlController', ['$scope', '$timeout', 'growl', 'model', function($scope, $timeout, growl, model) {
+    var currentTimeout;
 
-        $scope.title   = model.title;
-        $scope.text    = model.text;
-        $scope.options = model.options;
-        $scope.interval= model.options.timeout;
+    $scope.title = model.title;
+    $scope.text = model.text;
+    $scope.options = model.options;
+    $scope.interval = model.options.timeout;
 
-        $scope.showclass = $scope.options.class;
+    $scope.showclass = $scope.options.class;
 
-        $scope.close = function(res){
-            growl.close(res);
-        };
+    $scope.close = function(res) {
+        growl.close(res);
+    };
 
-        if ( $scope.options.sticky === false ) {
-            $scope.$watch('interval', restartTimer);
-        }
-
-        function restartTimer() {
-
-            if (currentTimeout) {
-                $timeout.cancel(currentTimeout);
-            }
-
-            function go() {
-                growl.close();
-            }
-
-            var interval = +$scope.interval;
-            if (!isNaN(interval) && interval>=0) {
-                currentTimeout = $timeout(go, interval);
-            }
-        }
-
+    if ($scope.options.sticky === false) {
+        $scope.$watch('interval', restartTimer);
     }
-])
+
+    function restartTimer() {
+
+        if (currentTimeout) {
+            $timeout.cancel(currentTimeout);
+        }
+
+        function go() {
+            growl.close();
+        }
+
+        var interval = +$scope.interval;
+        if (!isNaN(interval) && interval >= 0) {
+            currentTimeout = $timeout(go, interval);
+        }
+    }
+
+}])
 
 .provider("$growl", function() {
 
@@ -55,9 +50,7 @@ angular.module('ui.growl', [
     /*
          Returns the actual `$growl` service that is injected in controllers
     */
-    this.$get =
-    ["$http", "$document", "$compile", "$rootScope", "$controller", "$templateCache", "$q", "$injector",
-    function($http, $document, $compile, $rootScope, $controller, $templateCache, $q, $injector) {
+    this.$get = ["$http", "$document", "$compile", "$rootScope", "$controller", "$templateCache", "$q", "$injector", function($http, $document, $compile, $rootScope, $controller, $templateCache, $q, $injector) {
 
         var body = $document.find('body');
 
@@ -69,10 +62,11 @@ angular.module('ui.growl', [
 
         function Growl(opts) {
             var self = this,
-            options = this.options = angular.extend({}, defaults, opts);
+            options = this.options = angular.extend({},
+            defaults, opts);
 
             var el = document.querySelector('.growl-notice-wrapper');
-            if ( !el || el.length === 0 ) {
+            if (!el || el.length === 0) {
                 this.containerEl = createElement("growl-notice-wrapper");
                 self._addElementsToDom();
             }
@@ -86,12 +80,13 @@ angular.module('ui.growl', [
         // The `open(templateUrl, controller)` method opens the growl.
         // Use the `templateUrl` and `controller` arguments if specifying them at dialog creation time is not desired.
         Growl.prototype.open = function(templateUrl, controller) {
-            var self = this, options = this.options;
+            var self = this,
+            options = this.options;
 
-            if ( templateUrl ) {
+            if (templateUrl) {
                 options.templateUrl = templateUrl;
             }
-            if ( controller ) {
+            if (controller) {
                 options.controller = controller;
             }
 
@@ -150,17 +145,18 @@ angular.module('ui.growl', [
             var fade = (typeof(params.fade) != 'undefined') ? params.fade : true;
             var fade_out_speed = params.speed || this.fade_out_speed;
 
-            if ( fade && e.animate ) {
-                e.animate( { opacity: 0 },
-                            fade_out_speed,
-                            function() {
-                                e.animate({ height: 0 }, 300,
-                                    function() {
-                                        self.growlEl.remove();
-                                    }
-                                );
-                        }
-                );
+            if (fade && e.animate) {
+                e.animate({
+                    opacity: 0
+                },
+                fade_out_speed, function() {
+                    e.animate({
+                        height: 0
+                    },
+                    300, function() {
+                        self.growlEl.remove();
+                    });
+                });
             }
             else {
                 this.growlEl.remove();
@@ -174,7 +170,6 @@ angular.module('ui.growl', [
             keys = [],
             templatePromise,
             self = this;
-
 
             if (this.options.template) {
                 templatePromise = $q.when(this.options.template);
@@ -220,12 +215,12 @@ angular.module('ui.growl', [
             // * `cssClass`: additional css class(es) to apply to the button for styling
             box: function(title, text, options) {
                 title = title || "";
-                text  = text || "";
+                text = text || "";
                 options = options || {};
 
                 options = angular.extend(defaults, options);
 
-                if ( text.length === 0 && title.length === 0 ) {
+                if (text.length === 0 && title.length === 0) {
                     throw new Error('Growl Open requires a title or a text (or both)');
                 }
 
@@ -247,27 +242,12 @@ angular.module('ui.growl', [
     }];
 });
 
+angular.module("template/growl/box.html", []).run(["$templateCache", function($templateCache) {
 
-angular.module("template/growl/box.html", [])
-.run(
-  ["$templateCache",
-  function($templateCache) {
+    $templateCache.put("template/growl/box.html",
 
-  $templateCache.put(
-    "template/growl/box.html",
-
-    "<div class=\"growl-item-wrapper {{showclass}}\" style=\"\"> \n"+
-    "  <div class=\"growl-item\"> \n"+
-    "    <div class=\"growl-close\" ng-click=\"close()\">&times;</div> \n"+
-    "    <div> \n"+
-    "      <b ng-show=\"(title.length > 0 )\">{{title}}</b> \n"+
-    "      <p>{{text}}</p> \n"+
-    "    </div> \n"+
-    "    <div style=\"clear:both\"></div> \n"+
-    "  </div> \n"+
-    "</div> \n"+
+    "<div class=\"growl-item-wrapper {{showclass}}\" style=\"\"> \n" + "  <div class=\"growl-item\"> \n" + "    <div class=\"growl-close\" ng-click=\"close()\">&times;</div> \n" + "    <div> \n" + "      <b ng-show=\"(title.length > 0 )\">{{title}}</b> \n" + "      <p>{{text}}</p> \n" + "    </div> \n" + "    <div style=\"clear:both\"></div> \n" + "  </div> \n" + "</div> \n" +
 
     "");
 
-}])
-;
+}]);
