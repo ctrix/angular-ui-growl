@@ -1,4 +1,4 @@
-angular-ui-growl
+Angular-UI-Growl
 ================
 
 **Growl style notifications in AngularJS**
@@ -8,7 +8,7 @@ angular-ui-growl
 Dependencies
 ============
 
-ui.growl depends only on AngularJS 1.0.X or 1.1.X. Versions up to 1.0.7 and 1.1.5 has been tested.
+Angular-UI-Growl depends only on AngularJS 1.0.X or 1.1.X. Versions up to 1.0.7 and 1.1.5 has been tested.
 
 If you will use JQuery, which is not mandatory, the fading effect will be animated.
 
@@ -17,6 +17,7 @@ Installation
 
 * Using bower and running `bower install angular-ui-growl`
 * Downloading it manually by clicking [here](https://github.com/ctrix/angular-ui-growl/archive/master.zip)
+
 
 Quick configuration
 ===================
@@ -28,22 +29,21 @@ angular.module('demoApp', [ 'ui.growl' ])
 });
 
 angular.module('demoAppModule')
-  .controller('MainCtrl', function ($scope, $growl) {
-
+.controller('MainCtrl', function ($scope, $growl) {
     $scope.doClick = function(stick) {
         $growl.box('Hello', 'UI.Growl in action', {
-                class: 'success',
-                sticky: stick
+            class: 'success',
+            sticky: stick
         }).open();
     };
-  });
+});
 
 ````
 
 Using ui.growl
 ==============
 
-Growk is invoked like this:
+Growl is invoked like this:
 
 ````javascript
     $growl.box('Hello', 'UI.Growl in action', {
