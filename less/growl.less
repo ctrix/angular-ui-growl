@@ -1,0 +1,62 @@
+
+.growl-notice-wrapper {
+    position:fixed;
+    top:60px;
+    right:20px;
+    z-index:9999;
+}
+
+.growl-item-wrapper {
+    position:relative;
+    margin:0 0 10px 0;
+    padding: 0.75em;
+    min-width:181px;
+    background-color: @btnPrimaryBackground;
+    .box-shadow(3px 4px 1px 0px rgba(0,0,0,.45));
+    .opacity(90);
+    .border-radius(0px);
+}
+
+.growl-item-wrapper.inverse {
+    background-color: @btnInverseBackground;
+}
+
+.growl-item-wrapper.danger {
+    background-color: @btnDangerBackground;
+}
+
+.growl-item-wrapper.warning {
+    background-color: @btnWarningBackground;
+}
+
+.growl-item-wrapper.success {
+    background-color: @btnSuccessBackground;
+}
+
+.growl-item-wrapper.info {
+    background-color: @btnInfoBackground;
+}
+
+.growl-item-wrapper.primary {
+    background-color: @btnPrimaryBackground;
+}
+
+.growl-item {
+    display:block;
+    color:#eee;
+    padding:2px 11px 8px 11px;
+}
+
+.growl-item p {
+    padding:0;
+    margin:0;
+    word-wrap: break-word;
+}
+
+.growl-close {
+    position:absolute;
+    top:   0px;
+    right: 5px;
+    cursor:pointer;
+    font-size: 1.2em;
+}

@@ -1,4 +1,6 @@
 angular-ui-growl
 ================
 
-Growk style notifications in pure angular
+Growl style notifications in AngularJS
+
+
