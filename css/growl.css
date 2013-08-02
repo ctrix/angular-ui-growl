@@ -1,0 +1,71 @@
+
+.growl-notice-wrapper {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.growl-item-wrapper {
+  position: relative;
+  min-width: 181px;
+  padding: 0.75em;
+  margin: 0 0 10px 0;
+  background-color: #0088cc;
+  -webkit-border-radius: 0px;
+     -moz-border-radius: 0px;
+          border-radius: 0px;
+  opacity: 0.9;
+  filter: alpha(opacity=90);
+  -webkit-box-shadow: 3px 4px 1px 0px rgba(0, 0, 0, 0.45);
+     -moz-box-shadow: 3px 4px 1px 0px rgba(0, 0, 0, 0.45);
+          box-shadow: 3px 4px 1px 0px rgba(0, 0, 0, 0.45);
+
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.growl-item-wrapper.inverse {
+  background-color: #444444;
+}
+
+.growl-item-wrapper.danger {
+  background-color: #ee5f5b;
+}
+
+.growl-item-wrapper.warning {
+  background-color: #fbb450;
+}
+
+.growl-item-wrapper.success {
+  background-color: #62c462;
+}
+
+.growl-item-wrapper.info {
+  background-color: #5bc0de;
+}
+
+.growl-item-wrapper.primary {
+  background-color: #0088cc;
+}
+
+.growl-item {
+  display: block;
+  padding: 2px 11px 8px 11px;
+  color: #eee;
+}
+
+.growl-item p {
+  padding: 0;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+.growl-close {
+  position: absolute;
+  top: 0px;
+  right: 5px;
+  font-size: 1.2em;
+  cursor: pointer;
+}
