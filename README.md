@@ -5,6 +5,11 @@ Angular-UI-Growl
 
 [![Build Status](https://travis-ci.org/ctrix/angular-ui-growl.png)](https://travis-ci.org/ctrix/angular-ui-growl)
 
+Demo
+====
+
+If you want to have a look at what this code does, click [here](http://ctrix.github.io/angular-ui-growl/)
+
 Dependencies
 ============
 
